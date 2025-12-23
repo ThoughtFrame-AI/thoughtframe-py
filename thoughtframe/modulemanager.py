@@ -3,10 +3,7 @@
 from typing import TYPE_CHECKING, Any
 
 from thoughtframe.frameconnection import FrameConnection
-from thoughtframe.sensor import SensorMeshManager
-from thoughtframe.sensor.sensors import FfmpegAcousticSensor
-from thoughtframe.sensor.sensors import SyntheticAcousticSensor
-from torch._C._distributed_c10d import Work
+
 
 
 class ModuleManager:
@@ -58,9 +55,8 @@ class SystemCatalog:
     def connection(self) -> 'FrameConnection':
         return self.manager.get("connection")
     
-    @property
-    def sensormesh(self) -> 'SensorMeshManager':
-        return self.manager.get("sensormeshmanager")
+    def get(self, name: str) -> Any:
+        return self.manager.get(name)
     
     
     

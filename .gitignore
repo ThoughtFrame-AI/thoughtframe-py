@@ -1,0 +1,52 @@
+# =========================
+# Python bytecode / caches
+# =========================
+__pycache__/
+*.py[cod]
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Packaging / builds
+# =========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Testing / coverage
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Local config / secrets
+# =========================
+.env
+*.local
+config.local.*
+
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db

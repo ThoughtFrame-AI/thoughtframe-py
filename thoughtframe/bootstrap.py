@@ -4,7 +4,6 @@
 from thoughtframe.frameconnection import FrameConnection
 from thoughtframe.modulemanager import ModuleManager, SystemCatalog 
 from thoughtframe.router import BaseFrameRouter
-from thoughtframe.sensor.SensorMeshManager import SensorMeshManager
 
 
 # 2. CREATE THE SINGLETON INSTANCES HERE! (Resolves the AttributeError)
@@ -16,5 +15,5 @@ def configure():
     # 4. Use the created instance to register dependencies
     global_manager.register("router", lambda: BaseFrameRouter(global_manager))
     global_manager.register("connection", lambda: FrameConnection(global_manager))
-    global_manager.register("sensormeshmanager", lambda: SensorMeshManager(global_manager))
+    
     
