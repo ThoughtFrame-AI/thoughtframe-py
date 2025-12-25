@@ -4,7 +4,6 @@ import asyncio
 import sys 
 
 from thoughtframe.bootstrap import configure, thoughtframe
-from thoughtframe.sensor.mesh_config import NETWORK_CONFIG
 
 configure()
 
@@ -33,9 +32,8 @@ async def main():
     
     connection_service = thoughtframe.connection
     #
-    sensormanager  = thoughtframe.sensormesh;
-    sensormanager.start()
-    await asyncio.Event().wait()
+   
+   
     
     # 2. Start the connection. This method owns the async with block, 
     #    keepalive, and message consumption loop.

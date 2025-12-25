@@ -1,9 +1,7 @@
-# thoughtframe/modulemanager.py
-
 from typing import TYPE_CHECKING, Any
-
+from pathlib import Path
+from typing import Mapping
 from thoughtframe.frameconnection import FrameConnection
-
 
 
 class ModuleManager:
@@ -59,6 +57,27 @@ class SystemCatalog:
         return self.manager.get(name)
     
     
+    def resolve_rooted_path(self,
+            config: Mapping,
+            *parts: str,
+            default_root: str = "."
+        ) -> Path:
+        """
+        Resolve a filesystem path using ThoughtFrame semantics.
+    
+        Rules:
+        - config["root"]: absolute or relative (default ".")
+        - all other path parts are forced relative
+        - no accidental absolute resets
+        """
+    
+        root = config.get("root") or default_root
+        base = Path(root).resolve()
+    
+        clean_parts = [p.lstrip("/") for p in parts]
+    
+        return base.joinpath(*clean_parts)
+
     
         
 
