@@ -5,4 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "thoughtframe-python"
 version = "0.0.0"
+dependencies = [
+    "aiohttp"
+]
 
+[tool.setuptools]
+packages = ["tf_core"]

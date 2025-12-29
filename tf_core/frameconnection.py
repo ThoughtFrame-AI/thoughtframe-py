@@ -40,9 +40,26 @@ class FrameConnection:
                 return # Exit gracefully on failure
             await asyncio.sleep(10)
     
+    async def _handle_message(self, parsed):
+        try:
+            response = await self.router.dispatch(parsed)
+    
+            if response is not None:
+                await self._ws.send(json.dumps(response))
+    
+        except Exception as e:
+            error = {
+                "error": str(e),
+                "command": parsed.get("command")
+            }
+            await self._ws.send(json.dumps(error))
+
+    
     async def consume_messages(self):
         """Handles message reception and dispatch."""
         async for msg in self._ws:
             parsed = json.load(msg)
             # Delegate to the router service
-            await self.router.dispatch(parsed, None, self._ws)
+            asyncio.create_task(
+                self._handle_message(parsed)
+            )

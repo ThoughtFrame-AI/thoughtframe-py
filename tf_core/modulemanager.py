@@ -1,13 +1,18 @@
-from typing import TYPE_CHECKING, Any
+import inspect
 from pathlib import Path
 from typing import Mapping
-from thoughtframe.frameconnection import FrameConnection
+from typing import TYPE_CHECKING, Any
+
+from tf_core import modules
+from tf_core.frameconnection import FrameConnection
+from tf_core.web.webserver import BaseWebServer
 
 
 class ModuleManager:
     def __init__(self):
         self.field_registry = {}
-        # ... (other methods) ...
+    
+    
     def register(self, inName, inFactory):
         self.field_registry[inName] = inFactory
     def get(self, inName):
@@ -18,11 +23,14 @@ class ModuleManager:
             self.field_registry[inName] = instance
             return instance
         return entry
+    
+    
+    
 
 # --- TYPE HINT SETUP ---
 if TYPE_CHECKING:
     # 1. Successful import for IDE index
-    from thoughtframe.router import BaseFrameRouter 
+    from tf_core.router import BaseFrameRouter 
     from .frameconnection import FrameConnection 
 class SystemCatalog:
 
@@ -46,8 +54,8 @@ class SystemCatalog:
         return self.manager.get("router")
     
     @property
-    def database(self) -> object:
-        return self.manager.get("database")
+    def web(self) -> 'BaseWebServer':
+        return self.manager.get("web")
 
     @property
     def connection(self) -> 'FrameConnection':

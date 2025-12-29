@@ -3,7 +3,8 @@
 import asyncio
 import sys 
 
-from thoughtframe.bootstrap import configure, thoughtframe
+from tf_core.bootstrap import configure, thoughtframe
+from tf_core.web.webserver import BaseWebServer 
 
 configure()
 
