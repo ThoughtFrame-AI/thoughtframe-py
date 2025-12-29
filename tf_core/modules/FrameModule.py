@@ -1,5 +1,3 @@
-# thoughtframe/modules/frame_module.py
-from abc import ABC
 from tf_core.modules.BaseFrameModule import BaseFrameModule
 
 
@@ -20,3 +18,9 @@ class FrameModule(BaseFrameModule):
    
     def run_test_command(self, request):
         print(f"Executing test command {request}")
+        
+    def status(self, request):
+        return {
+            "module": self.__class__.__name__,
+            "status": "ready"
+        }

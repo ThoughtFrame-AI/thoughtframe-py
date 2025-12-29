@@ -6,10 +6,11 @@ class BaseWebServer:
         self._router = manager.get("router")
 
         self._host = cfg.get("host", "127.0.0.1")
-        self._port = cfg.get("port", 9090)
+        self._port = cfg.get("port", 15001)
 
         self._app = web.Application()
         self._app.router.add_post("/dispatch", self._handle_request)
+        self._app.router.add_get("/dispatch", self._handle_request)
 
         self._runner = None
         self._site = None
