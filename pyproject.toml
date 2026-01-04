@@ -1,13 +1,26 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "thoughtframe-python"
-version = "0.0.0"
+version = "0.1.0"
+description = "Reference Python runtime for ThoughtFrame"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Ian Miller" }
+]
 dependencies = [
-    "aiohttp"
+    "aiohttp",
+    "websockets"
 ]
 
 [tool.setuptools]
-packages = ["tf_core"]
+packages = [
+    "tf_core",
+    "tf_core.modules",
+    "tf_core.web"
+]
+
